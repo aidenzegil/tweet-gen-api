@@ -1,10 +1,13 @@
 from fastapi import FastAPI
-from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-import secret
-import os
 import openai
+
+## Secrets
+import secret
+
+## Routers
+import app.api.tweet_gen_routes as tweet_gen 
+
 
 openai.api_key = secret.api_key
 
@@ -18,11 +21,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/")
-def home():
-    return (
-    openai.Completion.create(
-    engine="text-davinci-002",
-    prompt="Say this is a test",
-    max_tokens=5))
-
+app.include_router(tweet_gen.router)
