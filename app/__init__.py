@@ -7,6 +7,7 @@ import secret
 
 ## Routers
 import app.api.tweet_gen_routes as tweet_gen 
+import app.api.math_routes as math
 
 
 openai.api_key = secret.api_key
@@ -22,3 +23,4 @@ app.add_middleware(
 )
 
 app.include_router(tweet_gen.router)
+app.include_router(math.router)
