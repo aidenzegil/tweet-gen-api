@@ -32,7 +32,3 @@ pyenv activate tweeter
 Start application
 
 `uvicorn app:app --reload`
-
-Close application
-
-`ctrl + c`
